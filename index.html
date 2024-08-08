@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prestador de Contas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="menu-bg">
+            <div class="menu">
+                <div class="menu-logo">
+                    <a href="#"><img src="imagens/logovertical300px2.png" alt="logo"></a>
+                </div> <!-- .menu-logo -->
+                <nav class="nav">
+                    <ul class="nav_list">
+                        <li><a href="#receitas" class="nav_link">Receita</a></li>
+                        <li><a href="#despesas" class="nav_link">Despesas</a></li>
+                    </ul> <!-- .nav_list -->
+                </nav> <!-- .nav -->
+
+            </div> <!-- .menu -->
+        </div> <!-- .menu-bg -->
+    </header>
+
+    <section class="input">
+        <div class="input_c">
+            <div class="receita-c">
+                 <h2>Receitas</h2>
+                     <input type="text" maxlength="2"   max="31" placeholder="Dia" class="input-r_data_value"><span class="input_data"></span>
+                     <input type="text" placeholder="Descrição" class="input-r_desc_value">
+                     <span>R$</span><input type="number" placeholder="Valor" class="input-r_valor_value">
+                     <button class="btnReceita">Adicionar</button>
+            </div> <!-- .receita-c -->
+
+            <div class="despesa-c">
+             <h2>Despesas</h2>
+                     <input type="text" maxlength="2" placeholder="Dia" class="input-d_data_value"><span class="input_data"></span>
+                     <input type="text" placeholder="Descrição" class="input-d_desc_value">
+                     <span>R$</span><input type="number" placeholder="Valor" class="input-d_valor_value">
+                     <button class="btnDespesa">Adicionar</button>
+            </div> <!-- .despesa-c -->
+        </div> <!-- .input-c -->
+     </section> <!-- .input -->
+
+     <section class="section_data">
+        <h1 class="main_titulo">EDIFÍCIO ALAN</h1>
+        <h2 class="data_titulo">PRESTAÇÃO DE CONTAS - <span class="data_atual"></span>
+        </h2>
+    </section> <!-- .section_data -->
+
+
+    <section class="receita_despesa">         
+        <section class="receitas">
+            
+            <table class="tabela-r">
+                <caption>Receitas</caption>
+                <thead>
+                    <tr>
+                        <th>DATA</th>
+                        <th>DESCRIÇÃO</th>
+                        <th>VALOR</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+                    <!--Criar TR e TD-->
+                    
+                </tbody>
+
+            </table>
+        </section> <!-- .receitas -->
+
+        <section class="despesas">
+            <table class="tabela-d">
+                <caption>Despesas</caption>
+                <thead>
+                    <tr>
+                        <th>DATA</th>
+                        <th>DESCRIÇÃO</th>
+                        <th >VALOR</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+                    <tr>
+                        <td>20/10/24</td>
+                        <td>Taxa condominio - apto 101</td>
+                        <td>1400</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </section> <!-- .despesas -->
+
+    </section> <!-- .receita_despesa --> 
+     
+
+
+    
+
+    <script src="indes.js"></script>
+</body>
+</html>
