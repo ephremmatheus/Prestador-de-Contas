@@ -9,15 +9,36 @@ const diaDes = document.querySelector('.input-d_data_value')
 const descDes = document.querySelector('.input-d_desc_value')
 const valDes = document.querySelector('.input-d_valor_value')
 
-const tbody = document.querySelector('.tbody');
+
+const thead1 = document.querySelector('.thead1');
+const thead0 = document.querySelector('.thead0');
+
+const tbody1 = document.querySelector('.tbody1');
+const tbody0 = document.querySelector('.tbody0');
 
 const btnReceita = document.querySelector('.btnReceita')
 const btnDespesa = document.querySelector('.btnDespesa')
 
 
-function criaLinhaTabela(dia, desc, val){
+function limpaInput(dia, desc, val){
+    dia.value = '';
+    desc.value = '';
+    val.value = '';
+}
+
+
+function criaLinhaTabela(dia, desc, val, RecOuDes){
     /*cria tr e td*/
     const tr = document.createElement('tr');
+
+    const tdApaga = document.createElement('td');
+    const tdApagaTxt = document.createTextNode('X');
+
+    tdApaga.style.cursor = 'pointer';
+    tdApaga.style.color = 'red';
+
+    tdApaga.appendChild(tdApagaTxt);
+
 
     const armazenaValores = [];
     armazenaValores.push(dia, desc, val);
@@ -26,9 +47,20 @@ function criaLinhaTabela(dia, desc, val){
         const td = document.createElement('td');
         const tdTxt = document.createTextNode(valor);
         td.appendChild(tdTxt)
-        tr.appendChild(td)
+        td.setAttribute('class', 'tdDado');
+        tr.appendChild(td);
+        
     }
-    tbody.appendChild(tr);
+
+    tr.appendChild(tdApaga);
+
+
+    if (RecOuDes == 0){
+        tbody0.appendChild(tr);
+    } else{
+        tbody1.appendChild(tr);
+    }
+    
 }
 
 
@@ -63,10 +95,41 @@ btnReceita.addEventListener('click', function (e){
             const diaRecValue = diaRec.value;
             const descRecValue = descRec.value;
             const valRecValue = valRec.value;
+            const  RecOuDes = 1; //Passa 'positivo' para saber que será adicionada a linha em 'Receitas'
 
-            criaLinhaTabela(diaRecValue, descRecValue, valRecValue);
+            criaLinhaTabela(diaRecValue, descRecValue, valRecValue,  RecOuDes);
+            limpaInput(diaRec, descRec, valRec);
         }
     } else{
         alert('Verifique se digitou todas as opções e tente novamente')
+    }
+})
+
+
+btnDespesa.addEventListener('click', function (e){
+    if (diaDes.value && descDes.value && valDes.value != 0){
+        if (isNaN(diaDes.value) || diaDes.value >31){
+            alert('Verifique os valores e tente novamente.');
+            
+        }
+        else{
+            const diaDesValue = diaDes.value;
+            const descDesValue = descDes.value;
+            const valDesValue = valDes.value;
+            const  RecOuDes = 0; //Passa 'Negativo' para saber que será adicionada a linha em 'Despesas'
+
+            criaLinhaTabela(diaDesValue, descDesValue, valDesValue, RecOuDes);
+            limpaInput(diaDes, descDes, valDes);
+        }
+    } else{
+        alert('Verifique se digitou todas as opções e tente novamente')
+    }
+})
+
+document.addEventListener('click', function(e){
+    const alvo = e.target;
+    const alvoPai = alvo.parentElement;
+    if (alvo.innerText == 'X'){
+        alvoPai.remove();
     }
 })

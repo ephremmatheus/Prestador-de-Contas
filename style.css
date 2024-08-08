@@ -71,6 +71,13 @@ a, a:active{
     
 }
 
+.receita-c, .despesa-c{
+    margin-bottom: 20px;
+}
+
+.receita-c >h2, .despesa-c >h2{
+    font-size: 20px;
+}
 
 .input-r_data_value, .input-d_data_value{
     text-align: center;
@@ -102,6 +109,7 @@ a, a:active{
 
 .data_titulo{
     text-align: center;
+    margin-bottom: 40px;
 }
 
 .section_data{
@@ -122,14 +130,22 @@ a, a:active{
 
 }
 
+.tabela-r > caption, .tabela-d > caption{
+    font-weight: bold;
+}
+
 .tabela-r, .tabela-d{
     border-collapse: collapse;
 
 }
 
 th, td{
-    border: 1px solid rgb(0, 0, 0);
     padding: 10px;
+}
+
+th, .tdDado{
+    border: 1px solid rgb(0, 0, 0);
+    
 }
 
 .th_data, .th_desc{
@@ -144,5 +160,10 @@ th, td{
     .receita_despesa{
         flex-direction: column;
         align-items: center;
+    }
+
+    .tabela-r{
+        margin-bottom: 30px;
+    
     }
 }
