@@ -123,7 +123,7 @@ a, a:active{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    border: 1px solid black;
+    
     max-width: 960px;
     margin: 0 auto;
     
@@ -162,8 +162,45 @@ th, .tdDado{
         align-items: center;
     }
 
-    .tabela-r{
+    .tabela-r, .tabela-d{
         margin-bottom: 30px;
     
     }
+}
+
+/**************TOTAL ****************/
+
+
+.totalRec{
+    max-width: 257px; 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: blue;
+    margin-top:20px;
+}
+
+.valorTotalRec{
+    font-weight: bold;
+}
+
+.valorTotalRec::before{
+    content: 'R$';
+}
+
+.totalDes{
+    max-width: 257px; 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgb(76, 199, 60);
+    margin-top:20px;
+}
+
+.valorTotalDes{
+    font-weight: bold;
+}
+
+.valorTotalDes::before{
+    content: 'R$';
 }

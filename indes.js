@@ -1,3 +1,9 @@
+/*
+CORRIGIR DATA DA TABELA
+ADICIONAR SOMADOR
+
+ */
+
 const dataNoTitulo = document.querySelector('.data_atual');
 const inputDataElements = document.querySelectorAll('.input_data');
 
@@ -19,6 +25,35 @@ const tbody0 = document.querySelector('.tbody0');
 const btnReceita = document.querySelector('.btnReceita')
 const btnDespesa = document.querySelector('.btnDespesa')
 
+const valorTotalRec = document.querySelector('.valorTotalRec');
+const valorTotalDes = document.querySelector('.valorTotalDes');
+
+let totalRec = 0;
+let totalDes = 0;
+
+
+function valorTotal(val, recOuDes){
+    if(recOuDes){
+        totalRec += Number(val);
+        valorTotalRec.innerText = totalRec;
+    } else{
+        totalDes += Number(val);
+        valorTotalDes.innerText = totalDes;
+    }
+    
+}
+
+function apagador(){
+    const tdApaga = document.createElement('td');
+    const tdApagaTxt = document.createTextNode('X');
+
+    tdApaga.style.cursor = 'pointer';
+    tdApaga.style.color = 'red';
+
+    tdApaga.appendChild(tdApagaTxt);
+    return tdApaga;
+}
+
 
 function limpaInput(dia, desc, val){
     dia.value = '';
@@ -31,14 +66,7 @@ function criaLinhaTabela(dia, desc, val, RecOuDes){
     /*cria tr e td*/
     const tr = document.createElement('tr');
 
-    const tdApaga = document.createElement('td');
-    const tdApagaTxt = document.createTextNode('X');
-
-    tdApaga.style.cursor = 'pointer';
-    tdApaga.style.color = 'red';
-
-    tdApaga.appendChild(tdApagaTxt);
-
+    const tdApaga = apagador();
 
     const armazenaValores = [];
     armazenaValores.push(dia, desc, val);
@@ -71,7 +99,7 @@ function adicionaData(mes, ano){
     for (let elemento of inputDataElements){
         elemento.innerText = dataFormatada;
     }
-    
+
 }
 
 function data(){
@@ -79,6 +107,11 @@ function data(){
     const mes = data.getMonth();
     const ano = data.getFullYear();  
     adicionaData(mes+1, ano);
+    if (mes+1 <10){
+        return `0${mes+1}`
+    } else{
+        return mes+1;
+    }
 }
 
 
@@ -92,13 +125,20 @@ btnReceita.addEventListener('click', function (e){
             
         }
         else{
+            if (diaRec.value <10 && !diaRec.value.includes('0')){
+                diaRec.value = `0${diaRec.value}/${data()}`;
+            } else{
+                diaRec.value = `${diaRec.value}/${data()}`;
+            }
             const diaRecValue = diaRec.value;
             const descRecValue = descRec.value;
             const valRecValue = valRec.value;
             const  RecOuDes = 1; //Passa 'positivo' para saber que será adicionada a linha em 'Receitas'
 
+            
             criaLinhaTabela(diaRecValue, descRecValue, valRecValue,  RecOuDes);
             limpaInput(diaRec, descRec, valRec);
+            valorTotal(valRecValue, 1);
         }
     } else{
         alert('Verifique se digitou todas as opções e tente novamente')
@@ -113,6 +153,11 @@ btnDespesa.addEventListener('click', function (e){
             
         }
         else{
+            if (diaDes.value <10 && !diaDes.value.includes('0')){
+                diaDes.value = `0${diaDes.value}/${data()}`;
+            } else{
+                diaDes.value = `${diaDes.value}/${data()}`;
+            }
             const diaDesValue = diaDes.value;
             const descDesValue = descDes.value;
             const valDesValue = valDes.value;
@@ -120,6 +165,7 @@ btnDespesa.addEventListener('click', function (e){
 
             criaLinhaTabela(diaDesValue, descDesValue, valDesValue, RecOuDes);
             limpaInput(diaDes, descDes, valDes);
+            valorTotal(valDesValue, 0);
         }
     } else{
         alert('Verifique se digitou todas as opções e tente novamente')
