@@ -19,6 +19,10 @@ const valDes = document.querySelector('.input-d_valor_value')
 const thead1 = document.querySelector('.thead1');
 const thead0 = document.querySelector('.thead0');
 
+const captionR = document.querySelector('.captionR');
+const captionD = document.querySelector('.captionD');
+
+
 const tbody1 = document.querySelector('.tbody1');
 const tbody0 = document.querySelector('.tbody0');
 
@@ -28,9 +32,11 @@ const btnDespesa = document.querySelector('.btnDespesa')
 const valorTotalRec = document.querySelector('.valorTotalRec');
 const valorTotalDes = document.querySelector('.valorTotalDes');
 
+const valor = document.querySelector('.valor');
+
 let totalRec = 0;
 let totalDes = 0;
-
+let total = 0;
 
 function valorTotal(val, recOuDes){
     if(recOuDes){
@@ -40,6 +46,8 @@ function valorTotal(val, recOuDes){
         totalDes += Number(val);
         valorTotalDes.innerText = totalDes;
     }
+    total = totalRec - totalDes;
+    valor.innerText = total;
     
 }
 
@@ -81,6 +89,9 @@ function criaLinhaTabela(dia, desc, val, RecOuDes){
     }
 
     tr.appendChild(tdApaga);
+
+    captionR.style.left = 'calc(50% - 49px)';
+    captionD.style.left = 'calc(50% - 49px)';
 
 
     if (RecOuDes == 0){

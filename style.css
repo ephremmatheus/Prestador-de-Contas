@@ -123,15 +123,17 @@ a, a:active{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    
     max-width: 960px;
     margin: 0 auto;
     
 
 }
 
-.tabela-r > caption, .tabela-d > caption{
+.captionR, .captionD{
+    position: relative;
     font-weight: bold;
+    left: calc(50%);
+    
 }
 
 .tabela-r, .tabela-d{
@@ -202,5 +204,17 @@ th, .tdDado{
 }
 
 .valorTotalDes::before{
+    content: 'R$';
+}
+
+/*******TOTAL*******/
+.total{
+    max-width: 960px;
+    margin: 10px auto ;
+    text-align: center;
+    font-weight: bold;
+}
+
+.valor::after{
     content: 'R$';
 }
