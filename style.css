@@ -129,15 +129,18 @@ a, a:active{
 
 }
 
+
+
 .captionR, .captionD{
-    position: relative;
+    display: flex;
+    justify-content: center;
     font-weight: bold;
-    left: calc(50%);
     
 }
 
 .tabela-r, .tabela-d{
     border-collapse: collapse;
+    background: red;
 
 }
 
@@ -178,7 +181,6 @@ th, .tdDado{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: blue;
     margin-top:20px;
 }
 
@@ -195,7 +197,7 @@ th, .tdDado{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: rgb(76, 199, 60);
+    
     margin-top:20px;
 }
 
@@ -203,7 +205,7 @@ th, .tdDado{
     font-weight: bold;
 }
 
-.valorTotalDes::before{
+.valorTotalDes::before, .valor::before{
     content: 'R$';
 }
 
@@ -215,6 +217,11 @@ th, .tdDado{
     font-weight: bold;
 }
 
-.valor::after{
-    content: 'R$';
-}
+
+/*IMPRESSORA*/
+
+@media print {
+    .print {
+      display: none;
+    }
+  }

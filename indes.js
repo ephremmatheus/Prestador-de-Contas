@@ -51,17 +51,23 @@ function valorTotal(val, recOuDes){
     
 }
 
-function apagador(){
+function apagador(val, recOuDes){
     const tdApaga = document.createElement('td');
     const tdApagaTxt = document.createTextNode('X');
 
     tdApaga.style.cursor = 'pointer';
     tdApaga.style.color = 'red';
 
+    tdApaga.setAttribute('class', 'print');
+
+    // Adiciona os atributos ao botão "X"
+    tdApaga.setAttribute('data-value', val);  // Armazena o valor da linha
+    tdApaga.setAttribute('data-type', recOuDes);  // Armazena o tipo de transação (0 para despesa, 1 para receita)
+
     tdApaga.appendChild(tdApagaTxt);
+
     return tdApaga;
 }
-
 
 function limpaInput(dia, desc, val){
     dia.value = '';
@@ -70,37 +76,29 @@ function limpaInput(dia, desc, val){
 }
 
 
-function criaLinhaTabela(dia, desc, val, RecOuDes){
-    /*cria tr e td*/
+function criaLinhaTabela(dia, desc, val, recOuDes){
     const tr = document.createElement('tr');
+    const tdApaga = apagador(val, recOuDes);  // Passa o valor e o tipo para a função apagador
 
-    const tdApaga = apagador();
-
-    const armazenaValores = [];
-    armazenaValores.push(dia, desc, val);
+    const armazenaValores = [dia, desc, val];
 
     for (let valor of armazenaValores){
         const td = document.createElement('td');
         const tdTxt = document.createTextNode(valor);
-        td.appendChild(tdTxt)
+        td.appendChild(tdTxt);
         td.setAttribute('class', 'tdDado');
         tr.appendChild(td);
-        
     }
 
     tr.appendChild(tdApaga);
 
-    captionR.style.left = 'calc(50% - 49px)';
-    captionD.style.left = 'calc(50% - 49px)';
-
-
-    if (RecOuDes == 0){
-        tbody0.appendChild(tr);
-    } else{
-        tbody1.appendChild(tr);
+    if (recOuDes == 0){
+        tbody0.appendChild(tr);  // Adiciona em despesas
+    } else {
+        tbody1.appendChild(tr);  // Adiciona em receitas
     }
-    
 }
+
 
 
 function adicionaData(mes, ano){
@@ -186,7 +184,25 @@ btnDespesa.addEventListener('click', function (e){
 document.addEventListener('click', function(e){
     const alvo = e.target;
     const alvoPai = alvo.parentElement;
+
     if (alvo.innerText == 'X'){
+        const valorApagado = Number(alvo.getAttribute('data-value'));  // Obtém o valor armazenado no botão "X"
+        const tipo = Number(alvo.getAttribute('data-type'));  // Obtém o tipo (0 para despesa, 1 para receita)
+
+        // Subtrai o valor do total correspondente
+        if (tipo === 1) {
+            totalRec -= valorApagado;
+            valorTotalRec.innerText = totalRec;
+            total = total - valorApagado;
+            valor.innerText = total;
+        } else {
+            totalDes -= valorApagado;
+            valorTotalDes.innerText = totalDes;
+            total = total + valorApagado;
+            valor.innerText = total;
+        }
+
+        // Remove a linha da tabela
         alvoPai.remove();
     }
-})
+});
