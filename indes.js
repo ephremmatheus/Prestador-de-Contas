@@ -200,12 +200,12 @@ document.addEventListener('click', function(e){
             totalRec -= valorApagado;
             valorTotalRec.innerText = totalRec;
             total = total - valorApagado;
-            valor.innerText = total;
+            valor.innerText = total.toFixed(2);
         } else {
             totalDes -= valorApagado;
             valorTotalDes.innerText = totalDes;
             total = total + valorApagado;
-            valor.innerText = total;
+            valor.innerText = total.toFixed(2);
         }
 
         // Remove a linha da tabela
