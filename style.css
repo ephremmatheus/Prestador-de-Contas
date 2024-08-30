@@ -36,7 +36,7 @@ a, a:active{
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     max-width: 960px;
     margin: 0px auto;
     flex-wrap: wrap;
@@ -55,7 +55,7 @@ a, a:active{
 
 @media screen and (min-width: 320px) and (max-width:505px){
     .menu{
-        justify-content: space-around;
+        justify-content: center;
     }
 }
 /********* 2 - INPUT ****** */
@@ -211,7 +211,7 @@ th, .tdDado{
 /*******TOTAL*******/
 .total{
     max-width: 960px;
-    margin: 10px auto ;
+    margin: 50px auto ;
     text-align: center;
     font-weight: bold;
 }
@@ -219,8 +219,27 @@ th, .tdDado{
 
 /*IMPRESSORA*/
 
+.imprimir{
+    max-width: 960px;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.imprimir > .btn-print{
+    padding: 10px;
+}
+
 @media print {
     .print {
       display: none;
     }
   }
+
+/*ASSINATURA*/
+  
+hr{
+    margin: 80px auto;
+    width: 400px;
+}  

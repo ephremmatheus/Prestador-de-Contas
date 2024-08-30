@@ -34,6 +34,8 @@ const valorTotalDes = document.querySelector('.valorTotalDes');
 
 const valor = document.querySelector('.valor');
 
+const btnPrint = document.querySelector('.btn-print');
+
 let totalRec = 0;
 let totalDes = 0;
 let total = 0;
@@ -124,6 +126,10 @@ function data(){
 }
 
 
+
+btnPrint.addEventListener('click', function(){
+    window.print();
+})
 
 document.addEventListener('DOMContentLoaded', data)
 
