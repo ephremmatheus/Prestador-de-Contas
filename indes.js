@@ -49,7 +49,7 @@ function valorTotal(val, recOuDes){
         valorTotalDes.innerText = totalDes;
     }
     total = totalRec - totalDes;
-    valor.innerText = total.toFixed(2)
+    valor.innerText = total.toFixed(2);
     
 }
 
