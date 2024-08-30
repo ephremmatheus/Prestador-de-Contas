@@ -1,8 +1,4 @@
-/*
-CORRIGIR DATA DA TABELA
-ADICIONAR SOMADOR
 
- */
 
 const dataNoTitulo = document.querySelector('.data_atual');
 const inputDataElements = document.querySelectorAll('.input_data');
@@ -43,13 +39,14 @@ let total = 0;
 function valorTotal(val, recOuDes){
     if(recOuDes){
         totalRec += Number(val);
-        valorTotalRec.innerText = totalRec;
+        valorTotalRec.innerText = totalRec.toFixed(2);
     } else{
         totalDes += Number(val);
-        valorTotalDes.innerText = totalDes;
+        valorTotalDes.innerText = totalDes.toFixed(2);
     }
     total = totalRec - totalDes;
     valor.innerText = total.toFixed(2);
+
     
 }
 
@@ -198,12 +195,12 @@ document.addEventListener('click', function(e){
         // Subtrai o valor do total correspondente
         if (tipo === 1) {
             totalRec -= valorApagado;
-            valorTotalRec.innerText = totalRec;
+            valorTotalRec.innerText = totalRec.toFixed(2);
             total = total - valorApagado;
             valor.innerText = total.toFixed(2);
         } else {
             totalDes -= valorApagado;
-            valorTotalDes.innerText = totalDes;
+            valorTotalDes.innerText = totalDes.toFixed(2);
             total = total + valorApagado;
             valor.innerText = total.toFixed(2);
         }
